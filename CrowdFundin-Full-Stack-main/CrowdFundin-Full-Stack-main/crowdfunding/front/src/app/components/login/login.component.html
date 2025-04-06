@@ -1,0 +1,86 @@
+<!-- login.component.html -->
+<section class="d-flex justify-content-center align-items-center vh-100" style="background-color: #f8f9fa;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg p-4 rounded-4">
+          <h2 class="text-center text-dark fw-bold">Login</h2>
+          <form class="mt-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- User Name -->
+            <div class="mb-3">
+              <label for="user-username" class="form-label text-dark fw-semibold">username</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="user-username"
+                  formControlName="username"
+                  placeholder="Enter your username"
+                  [class.is-invalid]="username?.touched && username?.invalid">
+                @if (username?.touched && username?.invalid) {
+                  <div class="invalid-feedback" style="padding-top:4px ;">
+                    @if (username?.errors?.['required']) {
+                      <div>username is required.</div>
+                    }
+                    @if (username?.errors?.['username']) {
+                      <div>Please enter a valid username address.</div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+            
+
+            <!-- Password -->
+            <div class="mt-4">
+              <label for="user-password" class="form-label text-dark fw-semibold">Password</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="user-password"
+                  formControlName="password"
+                  placeholder="Enter your password"
+                  [class.is-invalid]="password?.touched && password?.invalid">
+                @if (password?.touched && password?.invalid) {
+                  <div class="invalid-feedback">
+                    @if (password?.errors?.['required']) {
+                      <div>Password is required.</div>
+                    }
+                  </div>
+                }
+              </div>
+              <!-- Error Message -->
+              @if (errorMessage) {
+                <div class="alert alert-danger text-center mt-3" role="alert">
+                  {{ errorMessage }}
+                </div>
+              }
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-5">
+              <button
+                type="submit"
+                class="btn bg-dark text-light btn-lg fw-semibold"
+                [disabled]="loginForm.invalid">
+                Sign In
+              </button>
+            </div>
+
+            <!-- Forgot Password & Signup -->
+            <div class="text-center mt-3">
+              <a href="#" class="text-decoration-none text-muted">Forgot Password?</a>
+            </div>
+            <div class="text-center mt-2">
+              <span class="text-muted">Don't have an account?</span>
+              <a routerLink="/signup" class="text-dark fw-semibold text-decoration-none">Sign Up</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

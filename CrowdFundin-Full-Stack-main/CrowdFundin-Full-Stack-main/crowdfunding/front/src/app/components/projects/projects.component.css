@@ -1,0 +1,196 @@
+/* Import Google Fonts (e.g., Inter) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:host {
+  display: block;
+  padding: 2rem;
+  background: #f7fafc;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif; /* Modern, clean font */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Headers */
+.header-text {
+  font-size: 1.5rem; /* Larger for emphasis */
+  font-weight: 700; /* Bold */
+  color: #ffffff; /* White for contrast on gradient */
+  letter-spacing: 0.5px;
+}
+
+/* Form Labels */
+.form-label {
+  font-size: 1.1rem; /* Slightly larger */
+  font-weight: 600; /* Semi-bold */
+  color: #2d3748; /* Dark Slate */
+  margin-bottom: 8px;
+}
+
+/* Input Fields */
+.modern-input {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #ffffff;
+  font-size: 1rem; /* Standard size */
+  font-weight: 400; /* Regular weight */
+  color: #1a202c; /* Near Black */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modern-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+  outline: none;
+}
+
+textarea.modern-input {
+  height: 140px;
+  resize: vertical;
+}
+
+.modern-file-input {
+  padding: 8px;
+  border: 2px dashed #e2e8f0;
+  border-radius: 8px;
+  background-color: #f7fafc;
+  font-size: 0.95rem;
+  color: #4a5568; /* Medium Slate */
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(90deg, #4a90e2, #63b3ed);
+  border: none;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1.1rem; /* Slightly larger */
+  font-weight: 600; /* Bold */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+  color: #ffffff;
+}
+
+.button-text {
+  font-size: 0.95rem; /* Smaller for buttons */
+  font-weight: 500; /* Medium weight */
+}
+
+/* Card Headers */
+.bg-primary {
+  background: linear-gradient(90deg, #4a90e2, #63b3ed);
+}
+
+.bg-secondary {
+  background: linear-gradient(90deg, #2d3748, #4a5568);
+}
+
+/* Project Card */
+.project-card.bg-card {
+  background: linear-gradient(135deg, #ffffff 0%, #edf2f7 100%);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-radius: 10px;
+  max-height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* Card Typography */
+.title-text {
+  font-size: 1.5rem; /* Larger for titles */
+  font-weight: 700; /* Bold */
+  color: #1a202c; /* Near Black */
+  margin-bottom: 12px;
+}
+
+.body-text {
+  font-size: 1rem; /* Standard size */
+  font-weight: 400; /* Regular */
+  color: #4a5568; /* Medium Slate */
+  margin-bottom: 8px;
+}
+
+.text-muted {
+  color: #718096 !important; /* Lighter Slate */
+}
+
+.label-text {
+  font-size: 1rem;
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #2d3748; /* Dark Slate */
+}
+
+/* Alerts */
+.alert-danger {
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #38a169, #68d391);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Checkbox Label */
+.form-check-label.label-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+/* Button Group */
+.btn-outline-primary {
+  color: #4a90e2;
+  border-color: #4a90e2;
+}
+
+.btn-outline-primary:hover {
+  background-color: #4a90e2;
+  color: #ffffff;
+}
+
+.btn-outline-danger {
+  color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+.btn-outline-danger:hover {
+  background-color: #e53e3e;
+  color: #ffffff;
+}
+
+/* Animations */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
