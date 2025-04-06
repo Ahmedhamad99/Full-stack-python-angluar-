@@ -1,0 +1,87 @@
+<section class="d-flex justify-content-center align-items-center vh-100" style="background-color: #f8f9fa;margin-top:3rem">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg p-4 rounded-4">
+          <h2 class="text-center text-dark fw-bold">Create New Project</h2>
+          <form class="mt-4" (ngSubmit)="onSubmit()">
+            <!-- Project Title -->
+            <div class="mb-3">
+              <label for="title" class="form-label text-dark fw-semibold">Project Title</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-pencil"></i></span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  [(ngModel)]="newProject.title"
+                  name="title"
+                  required
+                  placeholder="Enter project title"
+                >
+              </div>
+            </div>
+
+            <!-- Details -->
+            <div class="mb-3">
+              <label for="details" class="form-label text-dark fw-semibold">Details</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-text-paragraph"></i></span>
+                <textarea
+                  class="form-control"
+                  id="details"
+                  [(ngModel)]="newProject.details"
+                  name="details"
+                  required
+                  placeholder="Describe your project"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Total Target -->
+            <div class="mb-3">
+              <label for="total_target" class="form-label text-dark fw-semibold">Total Target (in USD)</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-currency-dollar"></i></span>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="total_target"
+                  [(ngModel)]="newProject.total_target"
+                  name="total_target"
+                  required
+                  placeholder="e.g., 1000"
+                >
+              </div>
+            </div>
+
+            <!-- Project Image -->
+            <div class="mb-3">
+              <label for="image" class="form-label text-dark fw-semibold">Project Image</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-image"></i></span>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="image"
+                  (change)="onFileSelected($event)"
+                  accept="image/*"
+                >
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-3">
+              <button
+                type="submit"
+                class="btn bg-dark text-light btn-lg fw-semibold"
+              >
+                Create Project
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

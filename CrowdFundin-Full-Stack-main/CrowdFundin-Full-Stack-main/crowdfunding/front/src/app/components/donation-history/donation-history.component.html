@@ -1,0 +1,71 @@
+<section style="background-color: #eee; margin-top: 4rem; padding: 0 4rem 0">
+  <section class="container py-5">
+    <h2 class="text-center text-primary-emphasis">Donation History</h2>
+    <div class="row">
+      <div class="col">
+        <nav
+          aria-label="breadcrumb"
+          class="bg-body-tertiary rounded-3 p-3 mb-4"
+        >
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item">
+              <a routerLink="/profile" routerLinkActive="router-link-active"
+                >User Profile</a
+              >
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Donation History
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      @for (project of filteredProjects; track $index) {
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm mb-4">
+          <div
+            class="bg-image hover-overlay"
+            data-mdb-ripple-init
+            data-mdb-ripple-color="light"
+          >
+            <img
+              [src]="project.image"
+              class="img-fluid"
+              style="width: 500px;height:200px"
+              alt="{{ project.title || 'Project Image' }}"
+            />
+            <a href="#!">
+              <div
+                class="mask"
+                style="background-color: rgba(251, 251, 251, 0.15)"
+              ></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ project.title || "Card title" }}</h5>
+            <p class="card-text">
+              {{
+                project.details ||
+                  "Some quick example text to build on the card title and make up the bulk of the card's content."
+              }}
+            </p>
+            <a
+              [routerLink]="['/project', project.id]"
+              class="btn bg-danger text-light"
+              data-mdb-ripple-init
+              >View Details</a
+            >
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <div class="col-12 text-center">
+        <p class="text-muted">No donations found.</p>
+      </div>
+      } 
+    </div>
+  </section>
+</section>

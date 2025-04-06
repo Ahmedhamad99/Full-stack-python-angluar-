@@ -1,0 +1,100 @@
+<header class="p-3 mb-3 border-bottom bg-dark fixed-top">
+  <div class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-2 mb-lg-0 text-light text-decoration-none me-5"
+      >
+
+      
+        Crowd-Funding
+      </a>
+
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        <li>
+          <a href="#" class="nav-link px-2 link-secondary text-light" [routerLink]="['/projects']">Projects</a
+          >
+        </li>
+        
+      </ul>
+
+      
+      <div class="">
+        <a
+          [routerLink]="['/add-project']"
+          class="btn bg-white text-dark me-4 fw-bolder"
+          data-mdb-ripple-init
+          >Add New Project
+        </a>
+      </div>
+
+      <div class="dropdown text-end">
+        <a
+          href="#"
+          class="d-block link-secondary text-decoration-none dropdown-toggle text-light"
+          id="dropdownUser1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            [src]="userImage"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+          <li>
+            <a class="dropdown-item" routerLink="/donation-history"
+              >Donation History</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" routerLink="/edit-profile">Settings</a>
+          </li>
+          <li><a class="dropdown-item" routerLink="/profile/">Profile</a></li>
+
+          <li>
+            <a class="dropdown-item"[routerLink]="['/verify-account']"
+            *ngIf="!authService.isLoggedIn()"
+            >Verify Account</a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/password-reset']"
+            *ngIf="!authService.isLoggedIn()"
+            >Reset Password</a>
+          </li>
+          <li>
+          <hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" (click)="logout()"
+            *ngIf="authService.isLoggedIn()"
+          >
+            Logout
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/register']"
+            *ngIf="!authService.isLoggedIn()"
+            >Register
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"[routerLink]="['/login']"
+            *ngIf="!authService.isLoggedIn()"
+            >Login</a>
+          </li>
+          <!-- <li><a class="dropdown-item" routerLink="/login">Sign out</a></li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+  
+</header>
+

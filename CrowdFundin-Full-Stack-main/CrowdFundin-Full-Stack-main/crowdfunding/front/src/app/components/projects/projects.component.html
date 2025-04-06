@@ -1,0 +1,175 @@
+
+<!-- Project List -->
+  <div id="intro" class="bg-image shadow-1-strong" style="
+  background-image: url(https://mdbootstrap.com/img/new/slides/311.jpg);
+  height: 500px;
+  margin:0;
+  ">
+  <div class="mask text-white w-100" style="background-color: rgba(0, 0, 0, 0.6); " data-mdb-theme="dark">
+  <div class="container d-flex align-items-center justify-content-center text-center h-100">
+  <div class="text-white">
+    <h1 class="mb-3">Crowd Funding</h1>
+    <h4 class="mb-4">Check Our Site</h4>
+    <a class="btn btn-outline-light btn-lg mb-3" [routerLink]="['/projects']" role="button">Projects
+      <i class="fas fa-gem ms-1"></i>
+    </a>
+  </div>
+  </div>
+  </div>
+</div>
+  <div
+    class=" margin-top: 4rem; padding: 0 4rem 0"
+  >
+    <div class="container py-5">
+      <!-- <div class="card-header bg-secondary text-white header-text">
+        PROJECT LIST
+      </div> -->
+      <div class="card-body my-1">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control modern-input mb-3"
+            placeholder="Search projects by title..."
+            [(ngModel)]="searchTerm"
+            (input)="searchProjects()"
+            name="searchTerm"
+          />
+        </div>
+        <div class="form-check mb-3 d-flex">
+          <input
+            type="checkbox"
+            class="form-check-input modern-checkbox"
+            id="showMyProjects"
+            [checked]="showMyProjectsOnly"
+            (change)="toggleMyProjects()"
+            name="showMyProjects"
+          />
+          <label class="form-check-label label-text" for="showMyProjects"
+            >Show my projects only</label
+          >
+          
+        </div>
+        <div
+          *ngIf="filteredProjects.length === 0"
+          class="alert alert-info modern-alert body-text my-5 "
+        >
+          No projects found.
+        </div>
+        <div class="row my-5">
+          <div class="col-md-4"
+          *ngFor="let project of filteredProjects; let i = index"
+          >
+            <div class="card border-0 shadow-sm mb-4">
+              <div
+                class="bg-image hover-overlay"
+                data-mdb-ripple-init
+                data-mdb-ripple-color="light"
+              >
+                <img
+                  *ngIf="project.image"
+                  [src]="project.image"
+                  class="card-img-top mb-3"
+                  style="width: 500px;height:300px"
+                  alt="{{ project.title || 'Project Image' }}"
+                />
+                <a [routerLink]="['/project', project.id]">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.15)"
+                  ></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ project.title || "Card title" }}</h5>
+                <p class="card-text">
+                  {{
+                    project.details ||
+                      "Some quick example text to build on the card title and make up the bulk of the card's content."
+                  }}
+                </p>
+                <p class="card-text">
+                  <strong class="label-text">Target:</strong>
+                  {{ project.total_target | currency : "USD" }}
+                </p>
+                <p class="card-text">
+                  <strong class="label-text">Start:</strong>
+                  {{ project.start_time | date : "mediumDate" }}
+                </p>
+                <p class="card-text">
+                  <strong class="label-text">End:</strong>
+                  {{ project.end_time | date : "mediumDate" }}
+                </p>
+                <a
+                  [routerLink]="['/project', project.id]"
+                  class="btn bg-dark text-light"
+                  data-mdb-ripple-init
+                  >View Details
+                </a>
+                <button
+                    *ngIf="isAdmin()"
+                    class="btn bg-danger text-light ms-3"
+                    (click)="deleteProject(project.id)"
+                  >
+                    Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          
+         
+        </div>
+  
+        <!-- <div class="row">
+          <div
+            class="col-md-4 col-sm-6 mb-4"
+            *ngFor="let project of filteredProjects; let i = index"
+          >
+            <div
+              class="card project-card bg-card border-0 animate__animated animate__zoomIn"
+            >
+              <div class="card-body">
+                <img
+                  *ngIf="project.image"
+                  [src]="project.image"
+                  class="card-img-top mb-3"
+                  alt="Project Image"
+                />
+                <h5 class="card-title title-text">{{ project.title }}</h5>
+                <p class="card-text body-text text-muted">
+                  {{ project.details }}
+                </p>
+                <p class="card-text body-text">
+                  <strong class="label-text">Target:</strong>
+                  {{ project.total_target | currency : "USD" }}
+                </p>
+                <p class="card-text body-text">
+                  <strong class="label-text">Start:</strong>
+                  {{ project.start_time | date : "mediumDate" }}
+                </p>
+                <p class="card-text body-text">
+                  <strong class="label-text">End:</strong>
+                  {{ project.end_time | date : "mediumDate" }}
+                </p>
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/project', project.id]"
+                    class="btn btn-outline-primary btn-sm button-text"
+                    >View Details</a
+                  >
+                  <button
+                    *ngIf="isAdmin()"
+                    class="btn btn-outline-danger btn-sm button-text"
+                    (click)="deleteProject(project.id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    
+  </div>
+<!-- </div> -->

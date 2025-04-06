@@ -1,0 +1,175 @@
+<div class="container " style="margin-top:10rem; margin-bottom:3rem">
+  <!-- Alert Messages -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <!-- Project Details -->
+  <div *ngIf="project; else loading">
+    <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+      <div class="card-header text-white text-center py-1">
+        <h3 class="mb-0">{{ project.title }}</h3>
+      </div>
+      <div class="card-body p-4">
+        <!-- Display Mode -->
+        <div *ngIf="!isEditing">
+          <div class="mb-3">
+            <label class="form-label fw-bold">Details</label>
+            <p class="form-control-static">{{ project.details }}</p>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Total Target</label>
+              <p class="form-control-static fw-bold">
+                {{
+                  project.total_target | currency : "USD" : "symbol" : "1.0-0"
+                }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Created By</label>
+              <p class="form-control-static">{{ project.user?.username }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Start Date</label>
+              <p class="form-control-static">
+                {{ project.start_time | date : "medium" }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">End Date</label>
+              <p class="form-control-static">
+                {{ project.end_time | date : "medium" }}
+              </p>
+            </div>
+          </div>
+          <!-- Edit Button -->
+          <div *ngIf="canEdit()" class="mt-3 text-center fs-3">
+            <button class="btn btn-danger w-50" (click)="toggleEdit()">
+              Edit Project
+            </button>
+          </div>
+        </div>
+
+        <!-- Edit Mode -->
+        <div *ngIf="isEditing">
+          <form (ngSubmit)="saveChanges()">
+            <div class="mb-3">
+              <label for="title" class="form-label fw-bold"
+                >Project Title</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                [(ngModel)]="project.title"
+                name="title"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="details" class="form-label fw-bold">Details</label>
+              <textarea
+                class="form-control"
+                id="details"
+                [(ngModel)]="project.details"
+                name="details"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="total_target" class="form-label fw-bold"
+                  >Total Target (USD)</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="total_target"
+                  [(ngModel)]="project.total_target"
+                  name="total_target"
+                  required
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="start_time" class="form-label fw-bold"
+                  >Start Time</label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="start_time"
+                  [(ngModel)]="project.start_time"
+                  name="start_time"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label for="end_time" class="form-label fw-bold"
+                  >End Time</label
+                >
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="end_time"
+                  [(ngModel)]="project.end_time"
+                  name="end_time"
+                  required
+                />
+              </div>
+            </div>
+            <!-- Save & Cancel Buttons -->
+            <div class="mt-4 d-flex gap-2">
+              <button type="submit" class="btn btn-dark w-50">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger w-50"
+                (click)="toggleEdit()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Donation Section -->
+    <div class="card shadow-lg mt-4 border-0 rounded-3 overflow-hidden">
+      <div class="card-header bg-dark text-white text-center py-2">
+        <h2 class="h5 mb-0">Support This Project</h2>
+      </div>
+      <div class="card-body p-4">
+        <div class="input-group">
+          <input
+            type="number"
+            [(ngModel)]="donationAmount"
+            class="form-control border-0 shadow-sm"
+            placeholder="Enter amount"
+            min="1"
+            aria-label="Donation amount"
+          />
+          <button
+            class="btn btn-primary"
+            (click)="donate()"
+            [disabled]="donationAmount <= 0"
+          >
+            Donate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Placeholder -->
+  <ng-template #loading>
+    <div class="alert alert-info text-center">Loading project details...</div>
+  </ng-template>
+</div>

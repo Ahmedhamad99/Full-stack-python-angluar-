@@ -1,0 +1,85 @@
+<!-- project-details.component.html -->
+<div class="container py-4">
+    <!-- Back Button & Title -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <button class="btn btn-outline-secondary" routerLink="/projects">
+        <i class="bi bi-arrow-left me-2"></i> Back to Projects
+      </button>
+      <h2 class="mb-0 text-primary">{{ project?.title }}</h2>
+      <div *ngIf="isCreator" class="btn-group">
+        <a [routerLink]="['/edit-project', project?.id]" class="btn btn-primary">
+          <i class="bi bi-pencil me-2"></i> Edit
+        </a>
+        <button (click)="deleteProject()" class="btn btn-outline-danger" [disabled]="isDeleting">
+          <i class="bi bi-trash me-2"></i>
+          <span *ngIf="!isDeleting">Delete</span>
+          <span *ngIf="isDeleting">Deleting...</span>
+        </button>
+      </div>
+    </div>
+  
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-img-container" style="height: 300px;">
+            <img *ngIf="project?.image" 
+                 [src]="project.image" 
+                 class="card-img-top h-100 object-fit-cover" 
+                 >
+            <div *ngIf="!project?.image" class="bg-light h-100 d-flex justify-content-center align-items-center">
+              <i class="bi bi-image text-secondary" style="font-size: 3rem;"></i>
+            </div>
+          </div>
+          
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <div>
+                <h5 class="fw-bold">Project Goal</h5>
+                <p class="display-6 text-primary">{{ project?.total_target  }} $</p>
+              </div>
+              
+            </div>
+  
+            <div class="progress mb-4" style="height: 8px;">
+              <div class="progress-bar bg-primary" 
+                   [style.width.%]="progressPercentage">
+              </div>
+            </div>
+  
+            <div class="project-meta">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-calendar3 text-primary me-3"></i>
+                <div>
+                  <small class="text-muted">Start Date</small>
+                  <div class="fw-medium">{{ project?.start_time }}</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-calendar3 text-primary me-3"></i>
+                <div>
+                  <small class="text-muted">End Date</small>
+                  <div class="fw-medium">{{ project?.end_time  }}</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-person text-primary me-3"></i>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Column (Details) -->
+      <div class="col-lg-8">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title fw-bold mb-4">Project Details</h4>
+            <div class="project-content" [innerHTML]="project?.details"></div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
